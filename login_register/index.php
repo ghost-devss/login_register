@@ -6,7 +6,7 @@ $errors = [
     'login' => $_SESSION['login_error'] ?? '',
     'register' => $_SESSION['register_error'] ?? ''
 ];
-$activeForm = $_SESSION['active_form'] ?? 'login';
+$activeForm = $_SESSION['active_form'] ?? 'login-form';
 
 session_unset();
 
@@ -45,7 +45,7 @@ function isActiveForm($formName, $activeForm) {
             </form>
         </div>
 
-        <div class="form-box <?= isActiveForm('register', $activeForm) ?>" id="register-form">
+        <div class="form-box <?= isActiveForm('register-form', $activeForm) ?>" id="register-form">
             <form action="login_register.php"  method="post">
                 <h2>Register</h2>
                 <?= showError($errors['register']) ?>

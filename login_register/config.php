@@ -3,11 +3,11 @@
 $host = "localhost";
 $username = "root";
 $password = "";
-$dbname = "users_db";
+$dbname = "users db";
 
 $conn = new mysqli($host, $username, $password, $dbname);
 
-if($cinn->connect_error) {
+if($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
