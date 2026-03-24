@@ -1,115 +1,308 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", serif;
+    font-family: 'Inter', sans-serif;
 }
-body { 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+body {
     min-height: 100vh;
-    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
-    color: #333;
+    background: #0d0d14;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
 }
 
-.container {
-    margin: 0 15px;
+/* ── Blobs animados ── */
+.blob {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
 }
 
-.form-box {
-    width: 100%;
-    max-width: 450px;
-    padding: 30px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: none;
+.blob-purple {
+    width: 550px;
+    height: 550px;
+    background: radial-gradient(circle, rgba(139,92,246,0.55) 0%, transparent 70%);
+    top: -150px;
+    right: -100px;
+    filter: blur(50px);
+    animation: float1 8s ease-in-out infinite;
 }
 
-.form-box.active {
-    display: block;
+.blob-orange {
+    width: 380px;
+    height: 380px;
+    background: radial-gradient(circle, rgba(249,115,22,0.4) 0%, transparent 70%);
+    bottom: -100px;
+    left: -80px;
+    filter: blur(55px);
+    animation: float2 10s ease-in-out infinite;
 }
 
-h2 {
-    font-size: 34px;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-input,
-select {
-    width: 100%;
-    padding: 12px;
-    background: #eee;
-    border-radius: 6px;  
-    border: none;
-    outline: none;
-    font-size: 16px;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-button {
-    width: 100%;
-    padding: 12px;
-    background: #7494ec;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    color: #fff;
-    font-weight: 500;
-    margin-bottom: 20px;
-    transition: 0.5s;
-}
-
-button:hover {
-    background: #6884d3;
-}
-
-p {
-    text-align: center;
-    font-size: 14.5px;
-    margin-bottom: 10px;
-}
-
-p a {
-    color: #7494ec;
-    text-decoration: none;
-}
-
-p a:hover {
-    text-decoration: underline;
-}
-
-.error-message {
-    padding: 12px;
-    background: #f8d7da;
-    border-radius: 6px;
-    font-size: 16px;
-    color: #a42834;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-h1 {
-    font-size: 50px;
-}
-
-span {
-    color: #7494ec;
-}
-
-.box p {
-    font-size: 22px;
-}
-
-.box button {
-    display: block;
+.blob-pink {
     width: 300px;
-    margin: 0 auto;
+    height: 300px;
+    background: radial-gradient(circle, rgba(236,72,153,0.3) 0%, transparent 70%);
+    top: 55%;
+    left: 55%;
+    filter: blur(60px);
+    animation: float3 12s ease-in-out infinite;
 }
 
+@keyframes float1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33%       { transform: translate(-30px, 25px) scale(1.06); }
+    66%       { transform: translate(20px, -20px) scale(0.96); }
+}
+
+@keyframes float2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33%       { transform: translate(30px, -25px) scale(1.08); }
+    66%       { transform: translate(-20px, 30px) scale(0.94); }
+}
+
+@keyframes float3 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%       { transform: translate(-50px, -35px) scale(1.12); }
+}
+
+/* ── Wrapper ── */
+.wrapper {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    min-height: 100vh;
+}
+
+/* ── Card glass ── */
+.card {
+    width: 100%;
+    max-width: 400px;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* ── Logo ── */
+.logo-area {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.logo-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(139,92,246,0.6), rgba(236,72,153,0.6));
+    border: 1px solid rgba(167,139,250,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 14px;
+    box-shadow: 0 0 24px rgba(139,92,246,0.35);
+}
+
+.logo-icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: #e9d5ff;
+    stroke-width: 2;
+    fill: none;
+}
+
+.form-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+    transition: opacity 0.2s;
+}
+
+.form-sub {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.35);
+    transition: opacity 0.2s;
+}
+
+/* ── Tabs ── */
+.tabs {
+    display: flex;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 4px;
+    margin-bottom: 1.75rem;
+}
+
+.tab {
+    flex: 1;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.45);
+    border: 1px solid transparent;
+    background: none;
+    padding: 7px;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+}
+
+.tab:hover {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.tab.active {
+    background: rgba(255, 255, 255, 0.13);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+/* ── Formulários ── */
+.form {
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    animation: fadeIn 0.25s ease;
+}
+
+.form.show {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Campos ── */
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.field label {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.field input,
+.field select {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 11px 14px;
+    font-size: 14px;
+    color: #fff;
+    outline: none;
+    transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.field input:focus,
+.field select:focus {
+    border-color: rgba(139, 92, 246, 0.6);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+    background: rgba(255, 255, 255, 0.09);
+}
+
+.field input::placeholder {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.field select option {
+    background: #1a1a2e;
+    color: #fff;
+}
+
+/* ── Botão ── */
+.btn {
+    width: 100%;
+    padding: 12px;
+    background: rgba(139, 92, 246, 0.3);
+    border: 1px solid rgba(139, 92, 246, 0.5);
+    color: #e9d5ff;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 14px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.25);
+    transition: all 0.25s;
+    margin-top: 4px;
+}
+
+.btn:hover {
+    background: rgba(139, 92, 246, 0.45);
+    box-shadow: 0 0 32px rgba(139, 92, 246, 0.45);
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+/* ── Link de alternância ── */
+.switch {
+    text-align: center;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.35);
+    margin-top: 1rem;
+}
+
+.switch a {
+    color: #c4b5fd;
+    text-decoration: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.switch a:hover {
+    color: #e9d5ff;
+}
+
+/* ── Alertas ── */
+.alerta {
+    font-size: 13px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+}
+
+.alerta-erro {
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #fca5a5;
+}
+
+/* ── Responsivo ── */
+@media (max-width: 440px) {
+    .card { padding: 2rem 1.5rem; border-radius: 20px; }
+}
